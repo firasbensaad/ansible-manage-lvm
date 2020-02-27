@@ -12,9 +12,7 @@
   user:
     name: "{{ item[1]['username'] }}"
     state: absent
-  with_subelements:
-    - "{{ user_groups }}"
-    - users
+  loop: "{{ user_groups|subelements('users') }}"
   when: not install
 
 - name: groups_users_directories | suppression des groupes

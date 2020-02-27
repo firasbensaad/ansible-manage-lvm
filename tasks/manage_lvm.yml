@@ -17,9 +17,7 @@
     shrink: no
     state: "present"
   register: lvm
-  with_subelements:
-    - "{{ lvm_groups }}"
-    - lvnames
+  loop: "{{ lvm_groups|subelements('lvnames') }}"
   when: install
 
 - name: manage_lvm | creation des systemes de fichiers sur les volumes logiques
@@ -27,9 +25,7 @@
   filesystem:
     fstype: ext4
     dev: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
-  with_subelements:
-    - "{{ lvm_groups }}"
-    - lvnames
+  loop: "{{ lvm_groups|subelements('lvnames') }}"
   when: install
 
 - name: manage_lvm | montage des nouveaux systemes de fichiers
@@ -39,15 +35,11 @@
     src: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
     fstype: ext4
     state: "mounted"
-  with_subelements:
-    - "{{ lvm_groups }}"
-    - lvnames
+  loop: "{{ lvm_groups|subelements('lvnames') }}"
   when: install
 
 - name: manage_lvm | resizing filesystem
   become: true
   command: resize2fs /dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}
-  with_subelements:
-    - "{{ lvm_groups }}"
-    - lvnames
+  loop: "{{ lvm_groups|subelements('lvnames') }}"
   when: lvm['changed'] and install
