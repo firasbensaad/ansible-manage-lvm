@@ -7,13 +7,13 @@ user_groups:
         uid: 10211
         home: /home/ad12aihm
         sec_group: gp12aarc
-        shell: bash
+        shell: /bin/bash
 
       - username: mo12aihm
         uid: 10311
         home: /home/mo12aihm
         sec_group: gp12aarc
-        shell: bash
+        shell: /bin/bash
 
   - grpname: gp12aarc
     gid: 10203
@@ -22,13 +22,13 @@ user_groups:
         uid: 10207
         home: /home/ad12aarc
         sec_group: none
-        shell: bash
+        shell: /bin/bash
 
       - username: mo12aarc
         uid: 10308
         home: /home/mo12aarc
         sec_group: gp12aihm, gp12awas
-        shell: bash
+        shell: /bin/bash
 
   - grpname: gp12awas
     gid: 10001
@@ -37,13 +37,13 @@ user_groups:
         uid: 10000
         home: /home/ad12awas
         sec_group: none
-        shell: bash
+        shell: /bin/bash
 
       - username: mo12awas
         uid: 10310
         home: /home/mo12awas
         sec_group: none
-        shell: bash
+        shell: /bin/bash
 
 directories:
   - path: /opt/application/12aihm
