@@ -2,7 +2,7 @@
 - name: manage_lvm | demontage des systemes de fichiers
   become: true
   mount:
-    name: "{{ item[1]['mntp'] }}"
+    name: "{{ item['mntp'] }}"
     src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
     state: "absent"
