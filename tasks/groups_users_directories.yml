@@ -15,7 +15,7 @@
     group: "{{ item[0].grpname }}"
     groups:
       - "{{ item[1]['sec_group'] }}"
-    shell: "{{ item[1]['shell'] }}"
+    shell: "/bin/{{ item[1]['shell'] }}"
     home: "{{ item[1]['home'] }}"
   with_subelements:
     - "{{ user_groups }}"
