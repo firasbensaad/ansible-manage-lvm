@@ -91,6 +91,10 @@ lvm_groups:
       - lvname: 12awas_dump_lv
         size: 1g
         mntp: /opt/application/12awas/dump
+        
+      - lvname: 12aihm_lv
+        size: 2g
+        mntp: /opt/application/12aihm
 
       - lvname: 12aihm_log_lv
         size: 1g
@@ -99,10 +103,6 @@ lvm_groups:
       - lvname: 12aihm_dump_lv
         size: 2g
         mntp: /opt/application/12aihm/dump
-
-      - lvname: 12aihm_lv
-        size: 2g
-        mntp: /opt/application/12aihm
 
 #  - vgname: 12a_data_files_vg
 #    disks:
