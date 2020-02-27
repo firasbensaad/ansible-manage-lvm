@@ -1,0 +1,26 @@
+---
+- name: groups_users_directories | suppression des repertoires
+  become: true
+  file:
+    path: "{{ item['path'] }}"
+    state: absent
+  with_items: "{{ directories }}"
+  when: not install
+  
+- name: groups_users_directories | suppression des utilisateurs
+  become: true
+  user:
+    name: "{{ item[1]['username'] }}"
+    state: absent
+  with_subelements:
+    - "{{ user_groups }}"
+    - users
+  when: not install
+
+- name: groups_users_directories | suppression des groupes
+  become: true
+  group:
+    name: "{{ item['grpname'] }}"
+    state: absent
+  with_items: "{{ user_groups }}"
+  when: not install

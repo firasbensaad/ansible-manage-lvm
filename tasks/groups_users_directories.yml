@@ -6,6 +6,7 @@
     gid: "{{ item['gid'] }}"
     state: present
   with_items: "{{ user_groups }}"
+  when: install
 
 - name: groups_users_directories | creation des utilisateurs
   become: true
@@ -20,6 +21,7 @@
   with_subelements:
     - "{{ user_groups }}"
     - users
+  when: install
 
 - name: groups_users_directories | creation des repertoires
   become: true
@@ -30,3 +32,4 @@
     state: directory
     mode: "{{ item['mode'] }}"
   with_items: "{{ directories }}"
+  when: install

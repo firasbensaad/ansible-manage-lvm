@@ -6,6 +6,7 @@
     pvs: "{{ item['disks']|join(',') }}"
     state: "present"
   with_items: "{{ lvm_groups }}"
+  when: install
 
 - name: manage_lvm | creation des volumes logiques
   become: true
@@ -19,6 +20,7 @@
   with_subelements:
     - "{{ lvm_groups }}"
     - lvnames
+  when: install
 
 - name: manage_lvm | creation des systemes de fichiers sur les volumes logiques
   become: true
@@ -28,6 +30,7 @@
   with_subelements:
     - "{{ lvm_groups }}"
     - lvnames
+  when: install
 
 - name: manage_lvm | montage des nouveaux systemes de fichiers
   become: true
@@ -39,6 +42,7 @@
   with_subelements:
     - "{{ lvm_groups }}"
     - lvnames
+  when: install
 
 - name: manage_lvm | resizing filesystem
   become: true
@@ -46,4 +50,4 @@
   with_subelements:
     - "{{ lvm_groups }}"
     - lvnames
-  when: lvm['changed']
+  when: lvm['changed'] and install

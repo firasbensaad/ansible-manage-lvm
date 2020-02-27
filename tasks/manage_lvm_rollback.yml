@@ -1,0 +1,33 @@
+---
+- name: manage_lvm | demontage des systemes de fichiers
+  become: true
+  mount:
+    name: "{{ item[1]['mntp'] }}"
+    src: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
+    fstype: ext4
+    state: "absent"
+  with_subelements:
+    - "{{ lvm_groups }}"
+    - lvnames
+  when: not install
+
+- name: manage_lvm | suppression des volumes logiques
+  become: true
+  lvol:
+    vg: "{{ item[0]['vgname'] }}"
+    lv: "{{ item[1]['lvname'] }}"
+    state: "absent"
+    force: yes
+  with_subelements:
+    - "{{ lvm_groups }}"
+    - lvnames
+  when: not install
+
+- name: manage_lvm | suppression des groupes de volumes
+  become: true
+  lvg:
+    vg: "{{ item['vgname'] }}"
+    pvs: "{{ item['disks']|join(',') }}"
+    state: "absent"
+  with_items: "{{ lvm_groups }}"
+  when: not install
