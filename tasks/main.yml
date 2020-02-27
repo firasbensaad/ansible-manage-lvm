@@ -1,7 +1,6 @@
 ---
 - name: importation des variables
   include_vars:
-    dir: defaults
     file: "{{ env }}.yml"
 
 - name: installing lvm2
