@@ -49,27 +49,27 @@ directories:
   - path: /opt/application/12aihm
     owner: ad12aihm
     group: gp12aihm
-    mode: 0755
+    mode: '0755'
   
   - path: /var/opt/data/flat/12aarc/files
     owner: ad12aarc
     group: gp12aarc
-    mode: 0755
+    mode: '0755'
   
   - path: /opt/application/12awas
     owner: ad12awas
     group: gp12awas
-    mode: 0755
+    mode: '0755'
   
   - path: /opt/application/12aarc
     owner: ad12aarc
     group: gp12aarc
-    mode: 0755
+    mode: '0755'
   
   - path: images/12a
     owner: ad12aarc
     group: gp12aarc
-    mode: 0755
+    mode: '0755'
 
 lvm_groups:
   - vgname: 12aapp_vg
