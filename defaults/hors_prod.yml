@@ -1,6 +1,4 @@
 ---
-install: false
-
 user_groups:
   - grpname: gp12aihm
     gid: 10210
