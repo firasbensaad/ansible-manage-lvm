@@ -74,7 +74,7 @@ directories:
 lvm_groups:
   - vgname: 12aapp_vg
     disks:
-      - /dev/sda2
+      - /dev/sdc
     lvnames:
       - lvname: 12awas_lv
         size: 2g
@@ -104,22 +104,22 @@ lvm_groups:
         size: 2g
         mntp: /opt/application/12aihm
 
-  - vgname: 12a_data_files_vg
-    #disks:
-    #  - /dev/sda5
-    #  - /dev/sdc
-    #  - /dev/sdd
-    lvnames:
-      - lvname: 12a_data_p0408
-        size: 100%VG
-        mntp: /var/opt/data/flat/12aarc/files
+#  - vgname: 12a_data_files_vg
+#    disks:
+#      - /dev/sda5
+#      - /dev/sdc
+#      - /dev/sdd
+#    lvnames:
+#      - lvname: 12a_data_p0408
+#        size: 100%VG
+#        mntp: /var/opt/data/flat/12aarc/files
 
-  - vgname: 12awas_data_files_vg
-    #disks:
-    #  - /dev/sda5
-    #  - /dev/sdc
-    #  - /dev/sdd
-    lvnames:
-      - lvname: images
-        size: 100%VG
-        mntp: images/12a
+#  - vgname: 12awas_data_files_vg
+#    disks:
+#      - /dev/sda5
+#      - /dev/sdc
+#      - /dev/sdd
+#    lvnames:
+#      - lvname: images
+#        size: 100%VG
+#        mntp: images/12a
