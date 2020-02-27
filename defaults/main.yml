@@ -73,10 +73,8 @@ directories:
 
 lvm_groups:
   - vgname: 12aapp_vg
-    #disks:
-    #  - /dev/sda5
-    #  - /dev/sdc
-    #  - /dev/sdd
+    disks:
+      - /dev/sda2
     lvnames:
       - lvname: 12awas_lv
         size: 2g
