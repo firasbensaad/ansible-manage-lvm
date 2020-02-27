@@ -75,51 +75,56 @@ lvm_groups:
   - vgname: 12aapp_vg
     disks:
       - /dev/sdc
-    lvnames:
-      - lvname: 12awas_lv
-        size: 2g
-        mntp: /opt/application/12awas
-      
-      - lvname: 12aarc_lv
-        size: 2g
-        mntp: /opt/application/12aarc
-
-      - lvname: 12awas_log_lv
-        size: 1g
-        mntp: /opt/application/12awas/log
-
-      - lvname: 12awas_dump_lv
-        size: 1g
-        mntp: /opt/application/12awas/dump
-        
-      - lvname: 12aihm_lv
-        size: 2g
-        mntp: /opt/application/12aihm
-
-      - lvname: 12aihm_log_lv
-        size: 1g
-        mntp: /opt/application/12aihm/log
-
-      - lvname: 12aihm_dump_lv
-        size: 2g
-        mntp: /opt/application/12aihm/dump
 
 #  - vgname: 12a_data_files_vg
 #    disks:
 #      - /dev/sda5
 #      - /dev/sdc
 #      - /dev/sdd
-#    lvnames:
-#      - lvname: 12a_data_p0408
-#        size: 100%VG
-#        mntp: /var/opt/data/flat/12aarc/files
 
 #  - vgname: 12awas_data_files_vg
 #    disks:
 #      - /dev/sda5
 #      - /dev/sdc
 #      - /dev/sdd
-#    lvnames:
-#      - lvname: images
-#        size: 100%VG
-#        mntp: images/12a
+
+lvs:
+  - lvname: 12aarc_lv
+    vgname: 12aapp_vg
+    size: 2g
+    mntp: /opt/application/12aarc
+        
+  - lvname: 12awas_lv
+    vgname: 12aapp_vg
+    size: 2g
+    mntp: /opt/application/12awas
+
+  - lvname: 12awas_log_lv
+    vgname: 12aapp_vg
+    size: 1g
+    mntp: /opt/application/12awas/log
+
+  - lvname: 12awas_dump_lv
+    vgname: 12aapp_vg
+    size: 1g
+    mntp: /opt/application/12awas/dump
+        
+  - lvname: 12aihm_lv
+    vgname: 12aapp_vg
+    size: 2g
+    mntp: /opt/application/12aihm
+
+  - lvname: 12aihm_log_lv
+    vgname: 12aapp_vg
+    size: 1g
+    mntp: /opt/application/12aihm/log
+  
+#  - lvname: 12a_data_p0408
+#    vgname: 12a_data_files_vg
+#    size: 100%VG
+#    mntp: /var/opt/data/flat/12aarc/files
+
+#  - lvname: images
+#    vgname: 12awas_data_files_vg
+#    size: 100%VG
+#    mntp: images/12a

@@ -3,20 +3,20 @@
   become: true
   mount:
     name: "{{ item[1]['mntp'] }}"
-    src: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
+    src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
     state: "absent"
-  loop: "{{ lvm_groups|subelements('lvnames')|reverse|list }}"
+  with_items: "{{ lvs | reverse | list }}"
   when: not install
 
 - name: manage_lvm | suppression des volumes logiques
   become: true
   lvol:
-    vg: "{{ item[0]['vgname'] }}"
-    lv: "{{ item[1]['lvname'] }}"
+    vg: "{{ item['vgname'] }}"
+    lv: "{{ item['lvname'] }}"
     state: "absent"
     force: yes
-  loop: "{{ lvm_groups|subelements('lvnames')|reverse|list }}"
+  with_items: "{{ lvs | reverse | list }}"
   when: not install
 
 - name: manage_lvm | suppression des groupes de volumes

@@ -11,35 +11,35 @@
 - name: manage_lvm | creation des volumes logiques
   become: true
   lvol:
-    vg: "{{ item[0]['vgname'] }}"
-    lv: "{{ item[1]['lvname'] }}"
-    size: "{{ item[1]['size'] }}"
+    vg: "{{ item['vgname'] }}"
+    lv: "{{ item['lvname'] }}"
+    size: "{{ item['size'] }}"
     shrink: no
     state: "present"
   register: lvm
-  loop: "{{ lvm_groups|subelements('lvnames') }}"
+  with_items: "{{ lvs }}"
   when: install
 
 - name: manage_lvm | creation des systemes de fichiers sur les volumes logiques
   become: true
   filesystem:
     fstype: ext4
-    dev: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
-  loop: "{{ lvm_groups|subelements('lvnames') }}"
+    dev: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
+  with_items: "{{ lvs }}"
   when: install
 
 - name: manage_lvm | montage des nouveaux systemes de fichiers
   become: true
   mount:
-    name: "{{ item[1]['mntp'] }}"
-    src: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
+    name: "{{ item['mntp'] }}"
+    src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
     state: "mounted"
-  loop: "{{ lvm_groups|subelements('lvnames') }}"
+  with_items: "{{ lvs }}"
   when: install
 
 - name: manage_lvm | resizing filesystem
   become: true
-  command: resize2fs /dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}
-  loop: "{{ lvm_groups|subelements('lvnames') }}"
+  command: resize2fs /dev/{{ item['vgname'] }}/{{ item['lvname'] }}
+  with_items: "{{ lvs }}"
   when: lvm['changed'] and install
