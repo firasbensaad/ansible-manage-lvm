@@ -119,6 +119,11 @@ lvs:
     size: 1g
     mntp: /opt/application/12aihm/log
   
+  - lvname: 12aihm_dump_lv
+    vgname: 12aapp_vg
+    size: 2g
+    mntp: /opt/application/12aihm/dump
+  
 #  - lvname: 12a_data_p0408
 #    vgname: 12a_data_files_vg
 #    size: 100%VG
