@@ -1,0 +1,28 @@
+---
+# tasks file for ansible-manage-lvm
+- name: installing lvm2
+  yum:
+    name: "lvm2"
+    state: "present"
+  become: true
+
+- name: installing sg3_utils
+  yum:
+    name: "sg3_utils"
+    state: "present"
+  become: true
+
+- name: checking for scsi devices
+  shell: "sg_scan"
+  become: true
+  register: "scsi_devices"
+  changed_when: False
+
+- name: rescanning for new disks
+  command: "/usr/bin/rescan-scsi-bus.sh"
+  become: true
+  changed_when: False
+
+- include: groups_users_directories.yml
+
+- include: manage_lvm.yml

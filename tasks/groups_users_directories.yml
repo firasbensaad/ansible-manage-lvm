@@ -1,0 +1,32 @@
+---
+- name: groups_users_directories | creation des groupes
+  become: true
+  group:
+    name: "{{ item['grpname'] }}"
+    gid: "{{ item['gid'] }}"
+    state: present
+  with_items: "{{ user_groups }}"
+
+- name: groups_users_directories | creation des utilisateurs
+  become: true
+  user:
+    name: "{{ item[1]['username'] }}"
+    uid: "{{ item[1]['uid'] }}"
+    group: "{{ item[0].grpname }}"
+    groups:
+      - "{{ item[1]['sec_group'] }}"
+    shell: "{{ item[1]['shell'] }}"
+    home: "{{ item[1]['home'] }}"
+  with_subelements:
+    - "{{ user_groups }}"
+    - users
+
+- name: groups_users_directories | creation des repertoires
+  become: true
+  file:
+    path: "{{ item['path'] }}"
+    owner: "{{ item['owner'] }}"
+    group: "{{ item['group'] }}"
+    state: directory
+    mode: "{{ item['mode'] }}"
+  with_items: "{{ directories }}"

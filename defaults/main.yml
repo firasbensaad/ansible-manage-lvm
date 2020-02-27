@@ -1,0 +1,127 @@
+---
+user_groups:
+  - grpname: gp12aihm
+    gid: 10210
+    users:
+      - username: ad12aihm
+        uid: 10211
+        home: /home/ad12aihm
+        sec_group: gp12aarc
+        shell: /bin/bash
+
+      - username: mo12aihm
+        uid: 10311
+        home: /home/mo12aihm
+        sec_group: gp12aarc
+        shell: bash
+
+  - grpname: gp12aarc
+    gid: 10203
+    users:
+      - username: ad12aarc
+        uid: 10207
+        home: /home/ad12aarc
+        sec_group: none
+        shell: bash
+
+      - username: mo12aarc
+        uid: 10308
+        home: /home/mo12aarc
+        sec_group: gp12aihm, gp12awas
+        shell: bash
+
+  - grpname: gp12awas
+    gid: 10001
+    users:
+      - username: ad12awas
+        uid: 10000
+        home: /home/ad12awas
+        sec_group: none
+        shell: bash
+
+      - username: mo12awas
+        uid: 10310
+        home: /home/mo12awas
+        sec_group: none
+        shell: bash
+
+directories:
+  - path: /opt/application/12aihm
+    owner: ad12aihm
+    group: gp12aihm
+    mode: 0755
+  
+  - path: /var/opt/data/flat/12aarc/files
+    owner: ad12aarc
+    group: gp12aarc
+    mode: 0755
+  
+  - path: /opt/application/12awas
+    owner: ad12awas
+    group: gp12awas
+    mode: 0755
+  
+  - path: /opt/application/12aarc
+    owner: ad12aarc
+    group: gp12aarc
+    mode: 0755
+  
+  - path: images/12a
+    owner: ad12aarc
+    group: gp12aarc
+    mode: 0755
+
+lvm_groups:
+  - vgname: 12aapp_vg
+    #disks:
+    #  - /dev/sda5
+    #  - /dev/sdc
+    #  - /dev/sdd
+    lvnames:
+      - lvname: 12awas_lv
+        size: 2g
+        mntp: /opt/application/12awas
+      
+      - lvname: 12aarc_lv
+        size: 2g
+        mntp: /opt/application/12aarc
+
+      - lvname: 12awas_log_lv
+        size: 1g
+        mntp: /opt/application/12awas/log
+
+      - lvname: 12awas_dump_lv
+        size: 1g
+        mntp: /opt/application/12awas/dump
+
+      - lvname: 12aihm_log_lv
+        size: 1g
+        mntp: /opt/application/12aihm/log
+
+      - lvname: 12aihm_dump_lv
+        size: 2g
+        mntp: /opt/application/12aihm/dump
+
+      - lvname: 12aihm_lv
+        size: 2g
+        mntp: /opt/application/12aihm
+
+  - vgname: 12a_data_files_vg
+    #disks:
+    #  - /dev/sda5
+    #  - /dev/sdc
+    #  - /dev/sdd
+    lvnames:
+      - lvname: 12a_data_p0408
+        size: 100%VG
+        mntp: /var/opt/data/flat/12aarc/files
+
+  - vgname: 12awas_data_files_vg
+    #disks:
+    #  - /dev/sda5
+    #  - /dev/sdc
+    #  - /dev/sdd
+    lvnames:
+      - lvname: images
+        size: 100%VG
+        mntp: images/12a
