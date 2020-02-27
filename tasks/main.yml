@@ -9,3 +9,7 @@
 - include: groups_users_directories.yml
 
 - include: manage_lvm.yml
+
+- include: groups_users_directories_rollback.yml
+
+- include: manage_lvm_rollback.yml

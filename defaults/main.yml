@@ -1,5 +1,5 @@
 ---
-install: true
+install: false
 
 user_groups:
   - grpname: gp12aihm
