@@ -8,7 +8,7 @@
     state: "absent"
   with_subelements:
     - "{{ lvm_groups }}"
-    - lvnames
+    - lvnames | reverse
   when: not install
 
 - name: manage_lvm | suppression des volumes logiques
@@ -20,7 +20,7 @@
     force: yes
   with_subelements:
     - "{{ lvm_groups }}"
-    - lvnames
+    - lvnames | reverse
   when: not install
 
 - name: manage_lvm | suppression des groupes de volumes
