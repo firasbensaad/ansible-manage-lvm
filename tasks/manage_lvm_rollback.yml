@@ -6,7 +6,7 @@
     src: "/dev/{{ item[0]['vgname'] }}/{{ item[1]['lvname'] }}"
     fstype: ext4
     state: "absent"
-  loop: "{{ lvm_groups|subelements('lvnames')|reverse }}"
+  loop: "{{ lvm_groups|subelements('lvnames')|reverse|list }}"
   when: not install
 
 - name: manage_lvm | suppression des volumes logiques
@@ -16,7 +16,7 @@
     lv: "{{ item[1]['lvname'] }}"
     state: "absent"
     force: yes
-  loop: "{{ lvm_groups|subelements('lvnames')|reverse }}"
+  loop: "{{ lvm_groups|subelements('lvnames')|reverse|list }}"
   when: not install
 
 - name: manage_lvm | suppression des groupes de volumes
