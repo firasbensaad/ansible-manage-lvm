@@ -7,7 +7,7 @@ user_groups:
         uid: 10211
         home: /home/ad12aihm
         sec_group: gp12aarc
-        shell: /bin/bash
+        shell: bash
 
       - username: mo12aihm
         uid: 10311
