@@ -1,4 +1,0 @@
----
-- default_vars:
-  - "main.yml"
-  - "{{ env }}.yml"
