@@ -1,0 +1,80 @@
+---
+user_groups:
+  - grpname: gp12aarc
+    gid: 10203
+    users:
+      - username: ad12aarc
+        uid: 10207
+        home: /home/ad12aarc
+        sec_group: ''
+        shell: /bin/bash
+
+      - username: mo12aarc
+        uid: 10308
+        home: /home/mo12aarc
+        sec_group: gp12aihm, gp12awas
+        shell: /bin/bash
+
+  - grpname: gp12awas
+    gid: 10001
+    users:
+      - username: ad12awas
+        uid: 10000
+        home: /home/ad12awas
+        sec_group: ''
+        shell: /bin/bash
+
+      - username: mo12awas
+        uid: 10310
+        home: /home/mo12awas
+        sec_group: ''
+        shell: /bin/bash
+
+directories:
+  - path: /opt/application/12awas
+    owner: ad12awas
+    group: gp12awas
+    mode: '0755'
+  
+  - path: /opt/application/12aarc
+    owner: ad12aarc
+    group: gp12aarc
+    mode: '0755'
+
+lvm_groups:
+  - vgname: 12aapp_vg
+    disks:
+      - /dev/sdc
+
+#  - vgname: 12a_data_files_vg
+#    disks:
+#      - /dev/sda5
+#      - /dev/sdc
+#      - /dev/sdd
+
+#  - vgname: 12awas_data_files_vg
+#    disks:
+#      - /dev/sda5
+#      - /dev/sdc
+#      - /dev/sdd
+
+lvs:
+  - lvname: 12aarc_lv
+    vgname: 12aapp_vg
+    size: 2g
+    mntp: /opt/application/12aarc
+        
+  - lvname: 12awas_lv
+    vgname: 12aapp_vg
+    size: 2g
+    mntp: /opt/application/12awas
+  
+#  - lvname: 12a_data_p0408
+#    vgname: 12a_data_files_vg
+#    size: 100%VG
+#    mntp: /var/opt/data/flat/12aarc/files
+
+#  - lvname: images
+#    vgname: 12awas_data_files_vg
+#    size: 100%VG
+#    mntp: images/12a
