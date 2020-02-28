@@ -1,5 +1,5 @@
 ---
-- hosts: node2
+- hosts: all
   roles:
     - manage-lvm-ansible-role
     
