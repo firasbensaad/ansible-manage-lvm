@@ -5,6 +5,16 @@
     name: "{{ item['mntp'] }}"
     src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
+    state: "unmounted"
+  with_items: "{{ lvs | reverse | list }}"
+  when: not install
+
+- name: manage_lvm | suppression des systemes de fichiers
+  become: true
+  mount:
+    name: "{{ item['mntp'] }}"
+    src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
+    fstype: ext4
     state: "absent"
   with_items: "{{ lvs | reverse | list }}"
   when: not install
