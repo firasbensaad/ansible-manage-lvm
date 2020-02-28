@@ -12,7 +12,7 @@ user_groups:
       - username: mo12aarc
         uid: 10308
         home: /home/mo12aarc
-        sec_group: gp12aihm, gp12awas
+        sec_group: gp12awas
         shell: /bin/bash
 
   - grpname: gp12awas
