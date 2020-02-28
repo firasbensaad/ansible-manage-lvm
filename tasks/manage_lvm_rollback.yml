@@ -6,7 +6,7 @@
     src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
     state: "unmounted"
-  with_items: "{{ lvs | reverse | list }}"
+  with_items: "{{ lvm_volumes | reverse | list }}"
   when: not install
 
 - name: manage_lvm | suppression des systemes de fichiers
@@ -16,7 +16,7 @@
     src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
     state: "absent"
-  with_items: "{{ lvs | reverse | list }}"
+  with_items: "{{ lvm_volumes | reverse | list }}"
   when: not install
 
 - name: manage_lvm | suppression des volumes logiques
@@ -26,7 +26,7 @@
     lv: "{{ item['lvname'] }}"
     state: "absent"
     force: yes
-  with_items: "{{ lvs | reverse | list }}"
+  with_items: "{{ lvm_volumes | reverse | list }}"
   when: not install
 
 - name: manage_lvm | suppression des groupes de volumes

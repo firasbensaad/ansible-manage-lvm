@@ -17,7 +17,7 @@
     shrink: no
     state: "present"
   register: lvm
-  with_items: "{{ lvs }}"
+  with_items: "{{ lvm_volumes }}"
   when: install
 
 - name: manage_lvm | creation des systemes de fichiers sur les volumes logiques
@@ -25,7 +25,7 @@
   filesystem:
     fstype: ext4
     dev: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
-  with_items: "{{ lvs }}"
+  with_items: "{{ lvm_volumes }}"
   when: install
 
 - name: manage_lvm | montage des nouveaux systemes de fichiers
@@ -35,11 +35,11 @@
     src: "/dev/{{ item['vgname'] }}/{{ item['lvname'] }}"
     fstype: ext4
     state: "mounted"
-  with_items: "{{ lvs }}"
+  with_items: "{{ lvm_volumes }}"
   when: install
 
 - name: manage_lvm | resizing filesystem
   become: true
   command: resize2fs /dev/{{ item['vgname'] }}/{{ item['lvname'] }}
-  with_items: "{{ lvs }}"
+  with_items: "{{ lvm_volumes }}"
   when: lvm['changed'] and install

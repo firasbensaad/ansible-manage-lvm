@@ -88,7 +88,7 @@ lvm_groups:
 #      - /dev/sdc
 #      - /dev/sdd
 
-lvs:
+lvm_volumes:
   - lvname: 12aarc_lv
     vgname: 12aapp_vg
     size: 2g
